@@ -27,9 +27,9 @@ export default function Highlights() {
         const data = rawdata["data"][1]["data"];
         const visibility = rawdata["data"][1]["visibility"];
         // parsedData = JSON.parse(highlightsData.data);
-        // console.log(visibility);
-        // console.log(data);
-        // console.log(JSON.parse(rawdata["data"][1]["data"][0]));
+        // // console.log(visibility);
+        // // console.log(data);
+        // // console.log(JSON.parse(rawdata["data"][1]["data"][0]));
 
         if (data && Array.isArray(data)) {
           setHighlights(data);
@@ -38,7 +38,7 @@ export default function Highlights() {
 
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching highlights:", error);
+        // console.error("Error fetching highlights:", error);
         setHighlights([]);
         setLoading(false);
       }

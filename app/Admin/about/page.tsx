@@ -60,7 +60,7 @@ export default function AboutEditor() {
         alert("❌ Invalid response from API");
       }
     } catch (error) {
-      console.error("Failed to fetch about data:", error);
+      // // console.error("Failed to fetch about data:", error);
       alert("❌ Failed to fetch about data.");
     } finally {
       setLoading(false);
@@ -86,7 +86,7 @@ export default function AboutEditor() {
         alert(`❌ ${result.error || "Update failed"}`);
       }
     } catch (error) {
-      console.error("Error updating about:", error);
+      // console.error("Error updating about:", error);
       alert("❌ Error updating about section");
     }
   };
@@ -110,7 +110,7 @@ export default function AboutEditor() {
         alert(`❌ ${result.error || "Update failed"}`);
       }
     } catch (error) {
-      console.error("Error updating highlights:", error);
+      // console.error("Error updating highlights:", error);
       alert("❌ Error updating highlights");
     }
   };

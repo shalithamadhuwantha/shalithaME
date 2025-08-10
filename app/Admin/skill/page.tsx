@@ -138,7 +138,7 @@ const skillsArray = skillsProfile.content
         alert("❌ Failed to save skills: " + (result.error || "Unknown error"));
       }
     } catch (error) {
-      console.error("Error saving skills:", error);
+      // console.error("Error saving skills:", error);
       alert("❌ Error saving skills. Please try again.");
     } finally {
       setIsSaving(false);

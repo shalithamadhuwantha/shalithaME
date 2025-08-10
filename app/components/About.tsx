@@ -52,7 +52,7 @@ export default function About() {
           initializeAll();
         }
       } catch (error) {
-        console.error("Error loading scripts:", error);
+        // console.error("Error loading scripts:", error);
       }
     };
 
@@ -169,7 +169,7 @@ export default function About() {
       // Initialize social media
       initializeSocialMedia();
     } catch (error) {
-      console.error("Error initializing:", error);
+      // console.error("Error initializing:", error);
     }
   };
 
@@ -219,7 +219,7 @@ export default function About() {
         }
       }
     } catch (error) {
-      console.error("Error initializing social media:", error);
+      // console.error("Error initializing social media:", error);
     }
   };
 
@@ -262,8 +262,8 @@ export default function About() {
         const rawdata = res.data;
         const data = rawdata["data"][0]["data"];
         const visibility = rawdata["data"][0]["visibility"];
-        console.log(visibility);
-        console.log(data);
+        // console.log(visibility);
+        // console.log(data);
         if (data) {
           setAbout(data);
           setAboutvisi(visibility);

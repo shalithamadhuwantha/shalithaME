@@ -22,7 +22,7 @@ async signIn({ user }) {
   });
 
   if (!userRecord || !userRecord.access) {
-    console.warn('Unauthorized login attempt:', email);
+    // console.warn('Unauthorized login attempt:', email);
     return false;
   }
 

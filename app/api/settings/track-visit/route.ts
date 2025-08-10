@@ -10,7 +10,7 @@ interface TrackingData {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  console.log('=== Visit Tracking API Started ===');
+  // console.log('=== Visit Tracking API Started ===');
   
   try {
     // Parse request data
@@ -49,11 +49,11 @@ const clientIP =
     const today = new Date();
     const dateString = today.toISOString().split('T')[0]; // YYYY-MM-DD format
 
-    console.log('📊 Tracking visit:', {
-      endpoint,
-      date: dateString,
-      sessionId: sessionId.substring(0, 8) + '...', // Log partial session ID for debugging
-    });
+    // console.log('📊 Tracking visit:', {
+      //endpoint,
+      //date: dateString,
+      //sessionId: sessionId.substring(0, 8) + '...', // Log partial session ID for debugging
+    //});
 
     // Check if this is a unique visitor for this endpoint today
     const existingSession = await prisma.visitor_sessions.findFirst({
@@ -80,7 +80,7 @@ const clientIP =
           visited_at: today
         }
       });
-      console.log('✅ New unique visitor recorded');
+      // console.log('✅ New unique visitor recorded');
     }
 
     // Update or create page counter
@@ -110,7 +110,7 @@ const clientIP =
       }
     });
 
-    console.log('✅ Page counter updated successfully');
+    // console.log('✅ Page counter updated successfully');
 
     return NextResponse.json({
       success: true,
@@ -123,7 +123,7 @@ const clientIP =
     }, { status: 200 });
 
   } catch (error: unknown) {
-    console.error('💥 Tracking Error:', error);
+    // console.error('💥 Tracking Error:', error);
     
     return NextResponse.json({
       error: 'Failed to track visit',
@@ -134,7 +134,7 @@ const clientIP =
 
 // GET endpoint to retrieve statistics
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  console.log('=== Visit Statistics API Started ===');
+  // console.log('=== Visit Statistics API Started ===');
   
   try {
     const { searchParams } = new URL(req.url);
@@ -248,7 +248,7 @@ statistics.forEach(stat => {
     }, { status: 200 });
 
   } catch (error: unknown) {
-    console.error('💥 Statistics Error:', error);
+    // console.error('💥 Statistics Error:', error);
     
     return NextResponse.json({
       error: 'Failed to fetch statistics',

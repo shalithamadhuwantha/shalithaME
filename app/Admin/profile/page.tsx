@@ -46,7 +46,7 @@ export default function ProfileEditor() {
         alert("❌ Invalid response from API");
       }
     } catch (error) {
-      console.error("Failed to fetch profile data:", error);
+      // console.error("Failed to fetch profile data:", error);
       alert("❌ Failed to fetch profile data.");
     } finally {
       setLoading(false);
@@ -72,7 +72,7 @@ export default function ProfileEditor() {
         alert(`❌ ${result.error || "Update failed"}`);
       }
     } catch (error) {
-      console.error(`Error updating ${key}:`, error);
+      // console.error(`Error updating ${key}:`, error);
       alert(`❌ Error updating ${key}`);
     }
   };

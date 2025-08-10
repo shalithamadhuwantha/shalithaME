@@ -17,7 +17,7 @@ export default function VisitorTracker() {
           endpoint = pathname.replace('/', '').replace(/\//g, '-') || 'home';
         }
 
-        console.log('📊 Tracking visit to:', endpoint);
+        // console.log('📊 Tracking visit to:', endpoint);
 
         const response = await fetch('/api/settings/track-visit', {
           method: 'POST',
@@ -32,12 +32,12 @@ export default function VisitorTracker() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log('✅ Visit tracked:', data);
+          // console.log('✅ Visit tracked:', data);
         } else {
-          console.warn('⚠️ Failed to track visit:', response.status);
+          // console.warn('⚠️ Failed to track visit:', response.status);
         }
       } catch (error) {
-        console.error('❌ Tracking error:', error);
+        // console.error('❌ Tracking error:', error);
       }
     };
 

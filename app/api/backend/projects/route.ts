@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/api/settings/prisma';
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  console.log('=== Projects API GET Request Started ===');
+  // console.log('=== Projects API GET Request Started ===');
   
   try {
     const projects = await prisma.thoughts.findMany({
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       }
     });
 
-    console.log('✅ Projects fetched successfully, count:', projects.length);
+    // console.log('✅ Projects fetched successfully, count:', projects.length);
 
     return NextResponse.json({
       success: true,
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     }, { status: 200 });
 
   } catch (error: unknown) {
-    console.error('❌ GET Request Error:', error);
+    // console.error('❌ GET Request Error:', error);
     return NextResponse.json(
       { 
         error: 'Failed to fetch projects',
@@ -33,15 +33,15 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  console.log('=== Projects API POST Request Started ===');
+  // console.log('=== Projects API POST Request Started ===');
   
   try {
     let body;
     try {
       body = await req.json();
-      console.log('✅ Request body parsed, projects count:', body.length);
+      // console.log('✅ Request body parsed, projects count:', body.length);
     } catch (parseError) {
-      console.error('❌ JSON Parse Error:', parseError);
+      // console.error('❌ JSON Parse Error:', parseError);
       return NextResponse.json(
         { 
           error: 'Invalid JSON in request body',
@@ -62,11 +62,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       );
     }
 
-    console.log('🗄️ Starting database operations...');
+    // console.log('🗄️ Starting database operations...');
 
     // Delete all existing projects first
     await prisma.thoughts.deleteMany();
-    console.log('🗑️ Deleted existing projects');
+    // console.log('🗑️ Deleted existing projects');
 
     // Insert new projects
     const projectsToCreate = body.map((project: any) => ({
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       data: projectsToCreate
     });
 
-    console.log('✅ Projects created successfully, count:', result.count);
+    // console.log('✅ Projects created successfully, count:', result.count);
 
     return NextResponse.json({
       success: true,
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }, { status: 200 });
 
   } catch (error: unknown) {
-    console.error('💥 POST Request Error:', error);
+    // console.error('💥 POST Request Error:', error);
     
     let errorResponse = {
       error: 'Failed to save projects',

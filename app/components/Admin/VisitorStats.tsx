@@ -79,7 +79,7 @@ export default function VisitorStats() {
         setStats(data.data);
       }
     } catch (error) {
-      console.error('Failed to fetch stats:', error);
+      // console.error('Failed to fetch stats:', error);
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -101,7 +101,7 @@ setEndpoints(uniqueEndpoints);
 
       }
     } catch (error) {
-      console.error('Failed to fetch endpoints:', error);
+      // console.error('Failed to fetch endpoints:', error);
     }
   };
 

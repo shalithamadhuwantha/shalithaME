@@ -11,11 +11,11 @@ export async function GET() {
       },
     });
 
-    console.log("GET /api/profile - Loaded profiles:", profiles);
+    // console.log("GET /api/profile - Loaded profiles:", profiles);
 
     return NextResponse.json({ success: true, profiles });
   } catch (error: any) {
-    console.error("GET /api/profile - Error loading profiles:", error);
+    // console.error("GET /api/profile - Error loading profiles:", error);
 
     return NextResponse.json(
       { success: false, error: error.message || "Failed to load profiles" },
@@ -47,17 +47,17 @@ export async function POST(req: Request) {
         where: { id: existing.id },
         data: { content, visibility },
       });
-      console.log(`POST /api/profile - Updated profile: ${name}`);
+      // console.log(`POST /api/profile - Updated profile: ${name}`);
     } else {
       result = await prisma.profile.create({
         data: { name, content, visibility },
       });
-      console.log(`POST /api/profile - Created profile: ${name}`);
+      // console.log(`POST /api/profile - Created profile: ${name}`);
     }
 
     return NextResponse.json({ success: true, profile: result });
   } catch (error: any) {
-    console.error("POST /api/profile - Error updating profile:", error);
+    // console.error("POST /api/profile - Error updating profile:", error);
 
     return NextResponse.json(
       {

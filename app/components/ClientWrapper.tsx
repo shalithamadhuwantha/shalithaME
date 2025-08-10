@@ -17,7 +17,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
     setMounted(true);
   }, []);
     useEffect(() => {
-      console.log("Mounted:", mounted);
+      // console.log("Mounted:", mounted);
       if (!mounted) return;
 
       const loadScripts = async () => {
@@ -47,7 +47,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
             initializeAll();
           }
         } catch (error) {
-          console.error("Error loading scripts:", error);
+          // console.error("Error loading scripts:", error);
         }
       };
   
@@ -165,7 +165,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
         // Initialize social media
    
       } catch (error) {
-        console.error("Error initializing:", error);
+        // console.error("Error initializing:", error);
       }
     };
   
@@ -215,7 +215,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
           }
         }
       } catch (error) {
-        console.error("Error initializing social media:", error);
+        // console.error("Error initializing social media:", error);
       }
     };
 

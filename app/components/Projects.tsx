@@ -38,7 +38,7 @@ export default function Projects() {
       }
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching projects:', error);
+      // console.error('Error fetching projects:', error);
       setProjects([]);
       setLoading(false);
     }

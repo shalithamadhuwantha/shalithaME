@@ -6,7 +6,7 @@ export async function GET(request: Request, context: { params: Promise<{ segment
   // Await params! (params is a Promise)
   const { segments = [] } = await context.params;
   try {
-    console.log(`Received segments: ${JSON.stringify(segments)}`);
+    // console.log(`Received segments: ${JSON.stringify(segments)}`);
     const userPath = join(...segments);
 
     // SECURITY: Prevent outside-path access
@@ -15,7 +15,7 @@ export async function GET(request: Request, context: { params: Promise<{ segment
     }
 
     const dir = join(process.cwd(), userPath);
-    console.log(`Listing images in: ${dir}`);
+    // console.log(`Listing images in: ${dir}`);
 
     const allowedBase = join(process.cwd(), "public", "assets");
     if (!normalize(dir).startsWith(allowedBase)) {

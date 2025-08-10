@@ -10,7 +10,7 @@ export async function GET() {
     });
     return NextResponse.json({ success: true, certs });
   } catch (error: any) {
-    console.error("GET /api/backend/cert - Error:", error);
+    // console.error("GET /api/backend/cert - Error:", error);
     return NextResponse.json(
       { success: false, error: error.message || "Failed to load certificates" },
       { status: 500 }
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
-    console.error("POST /api/backend/cert - Error:", error);
+    // console.error("POST /api/backend/cert - Error:", error);
     return NextResponse.json(
       { success: false, error: error.message || "Failed to update certificates" },
       { status: 500 }

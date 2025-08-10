@@ -19,7 +19,7 @@ const PgHeader: React.FC<PgHeaderProps> = ({ page = "about" , desc="test"}) => {
               document.head.appendChild(fontAwesome);
             }
           } catch (error) {
-            console.error("Error loading scripts:", error);
+            // console.error("Error loading scripts:", error);
           }
         };
     

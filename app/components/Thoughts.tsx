@@ -49,7 +49,7 @@ export default function Thoughts() {
       }
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching thoughts:', error);
+      // console.error('Error fetching thoughts:', error);
       setThoughts([]);
       setLoading(false);
     }
