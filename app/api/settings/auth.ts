@@ -6,7 +6,7 @@ export function verifyApiKey(req: NextRequest): NextResponse | null {
   const token = authHeader?.replace('Bearer ', '').trim();
 
   if (!token || token !== process.env.NEXT_PUBLIC_MY_API_KEY) {
-    console.warn('Unauthorized access attempt with token:', token);
+    console.log('Unauthorized access attempt with token:', token);
     return NextResponse.json(
       { error: 'Unauthorized: Invalid or missing API key' },
       { status: 401 }
