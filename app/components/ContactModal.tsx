@@ -29,7 +29,7 @@ export default function ContactModal() {
               </td>
               <td className="w-[90%]">
                 <p className="text-left text-custom-heading m-0 p-0">E-mail</p>
-                <a href="mailto:shalitha@shalithamdhuwantha.me" className="text-left text-custom-text2 no-underline">shalitha@shalithamdhuwantha.me</a>
+                <a href="mailto:hello@shalitha.me" className="text-left text-custom-text2 no-underline">hello@shalitha.me</a>
               </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@ export default function ContactModal() {
               </td>
               <td className="w-[90%]">
                 <p className="text-left text-custom-heading m-0 p-0">Phone</p>
-                <a href="https://wa.me/+940740082154" className="text-left text-custom-text2 no-underline">(+94)74 008 2154</a>
+                <a href="https://wa.me/+9478743616" className="text-left text-custom-text2 no-underline">(+94) 787 436 16</a>
               </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@ export default function ContactModal() {
               </td>
               <td className="w-[90%]">
                 <p className="text-left text-custom-heading m-0 p-0">Birthday</p>
-                <a href="https://shalithamadhuwantha.me/about/" className="text-left text-custom-text2 no-underline">21 October 2002</a>
+                <a href="https://shalitha.me/about/" className="text-left text-custom-text2 no-underline">21 October 2002</a>
               </td>
             </tr>
             <tr>
