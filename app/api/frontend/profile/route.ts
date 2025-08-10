@@ -9,6 +9,8 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const authError = verifyApiKey(req);
     if (authError) return authError;
   } catch (authErr: unknown) {
+    console.log('Authentication Error:', authErr);
+    
     const message =
       authErr instanceof Error ? authErr.message : 'Unknown authentication error';
     return NextResponse.json(
