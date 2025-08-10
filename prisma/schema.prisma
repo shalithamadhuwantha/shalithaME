@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model profile {
+  id         Int     @id @default(autoincrement())
+  name       String? @db.VarChar(255)
+  content    String? @db.LongText
+  visibility Boolean
+}
+
+model work {
+  id           Int      @id @default(autoincrement())
+  company      String   @db.VarChar(255)
+  position     String   @db.VarChar(255)
+  working_type String?  @db.VarChar(255)
+  start        DateTime @db.Date
+  end          String   @db.VarChar(100)
+  address      String   @db.VarChar(255)
+  discription  String   @db.VarChar(255)
+  img          Bytes
+}
+
+model cert {
+  id         Int      @id @default(autoincrement())
+  certname   String   @db.VarChar(255)
+  company    String   @db.VarChar(255)
+  issuedate  DateTime @db.Date
+  veryfyid   String   @db.VarChar(255)
+  img        String   @db.VarChar(255)
+  tag        String   @db.VarChar(255)
+  visibility Boolean
+}
+
+model admin {
+  id                  Int      @id @default(autoincrement())
+  email               String   @db.VarChar(255)
+  access              Boolean
+  joindate            DateTime @db.DateTime(0)
+  lastlogin           DateTime @db.DateTime(0)
+  lastlogindevicemeta String   @db.VarChar(255)
+}
+
+model about {
+  id         Int     @id @default(autoincrement())
+  controler  String  @db.VarChar(255)
+  data       String  @db.LongText
+  visibility Boolean
+}
+
+model thoughts {
+  id          Int           @id @default(autoincrement())
+  title       String        @db.VarChar(255)
+  description String        @db.LongText
+  image       String?       @db.VarChar(255)
+  link        String?       @db.VarChar(255)
+  date        DateTime      @db.Date
+  type        thoughts_type
+  visibility  Boolean?      @default(true)
+}
+
+model page_counters {
+  id              Int       @id @default(autoincrement())
+  endpoint        String    @db.VarChar(255)
+  date            DateTime  @db.Date
+  views           Int?      @default(0)
+  unique_visitors Int?      @default(0)
+  created_at      DateTime? @default(now()) @db.Timestamp(0)
+  updated_at      DateTime? @default(now()) @db.Timestamp(0)
+
+  @@unique([endpoint, date], map: "unique_endpoint_date")
+  @@index([date], map: "idx_date")
+  @@index([endpoint], map: "idx_endpoint")
+}
+
+model visitor_sessions {
+  id              Int       @id @default(autoincrement())
+  session_id      String    @db.VarChar(255)
+  endpoint        String    @db.VarChar(255)
+  ip_hash         String    @db.VarChar(64)
+  user_agent_hash String    @db.VarChar(64)
+  visited_at      DateTime? @default(now()) @db.Timestamp(0)
+
+  @@index([visited_at], map: "idx_date")
+  @@index([session_id, endpoint], map: "idx_session_endpoint")
+}
+
+enum thoughts_type {
+  main
+  project
+  thought
+  event
+}
