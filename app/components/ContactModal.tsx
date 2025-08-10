@@ -38,7 +38,7 @@ export default function ContactModal() {
               </td>
               <td className="w-[90%]">
                 <p className="text-left text-custom-heading m-0 p-0">Phone</p>
-                <a href="https://wa.me/+9478743616" className="text-left text-custom-text2 no-underline">(+94) 787 436 16</a>
+                <a href="https://wa.me/+94788743616" className="text-left text-custom-text2 no-underline">(+94) 788 743 616</a>
               </td>
             </tr>
             <tr>
