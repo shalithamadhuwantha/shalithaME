@@ -6,9 +6,6 @@ import './globals.css';
 import ClientWrapper from './components/ClientWrapper';
 import Preloader from './components/preloader/Loader';
 import VisitorTracker from './components/settings/VisitorTracker';
-import { DefaultSeo } from "next-seo";
-import SEO from "../next-seo.config";
-
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -31,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.className} w-full h-full m-0 bg-custom-bg text-custom-text`} suppressHydrationWarning>
-      <DefaultSeo {...SEO} />
+    
        <Preloader />
         <VisitorTracker />    
         <ClientWrapper>{children}</ClientWrapper>
