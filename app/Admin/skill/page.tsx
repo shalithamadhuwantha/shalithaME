@@ -29,18 +29,19 @@ export default function SkillsDisplay() {
 
       if (skillsProfile) {
         setVisibility(skillsProfile.visibility ?? true);
-        const skillsArray = skillsProfile.content
-          .split("\n")
-          .flatMap((line: string) => line.split(","))
-          .map((entry) => entry.trim())
-          .filter(Boolean)
-          .map((item) => {
-            const [namePart, levelPart] = item.split(">>").map((s) => s.trim());
-            const name = namePart;
-            const match = levelPart?.match(/\((\d+)\)/);
-            const level = match ? parseInt(match[1], 10) : 0;
-            return { name, level };
-          });
+const skillsArray = skillsProfile.content
+  .split("\n")
+  .flatMap((line: string) => line.split(","))
+  .map((entry: string) => entry.trim())
+  .filter(Boolean)
+  .map((item: string) => {
+    const [namePart, levelPart] = item.split(">>").map((s) => s.trim());
+    const name = namePart;
+    const match = levelPart?.match(/\((\d+)\)/);
+    const level = match ? parseInt(match[1], 10) : 0;
+    return { name, level };
+  });
+
 
         setLocalSkills(skillsArray);
       }
