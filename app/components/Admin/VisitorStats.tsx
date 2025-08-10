@@ -92,8 +92,13 @@ export default function VisitorStats() {
       const data: StatsResponse = await response.json();
 
       if (data.success) {
-        const uniqueEndpoints = [...new Set(data.data.map(item => item.endpoint).filter(Boolean))];
-        setEndpoints(uniqueEndpoints);
+const uniqueEndpoints = [...new Set(
+  data.data
+    .map(item => item.endpoint)
+    .filter((endpoint): endpoint is string => Boolean(endpoint))
+)];
+setEndpoints(uniqueEndpoints);
+
       }
     } catch (error) {
       console.error('Failed to fetch endpoints:', error);

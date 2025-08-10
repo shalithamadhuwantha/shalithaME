@@ -14,31 +14,33 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/signin',
   },
   callbacks: {
-    async signIn({ user }) {
-      const email = user.email ?? '';
+async signIn({ user }) {
+  const email = user.email ?? '';
 
-      const userRecord = await prisma.admin.findFirst({
-        where: { email },
-      });
+  const userRecord = await prisma.admin.findFirst({
+    where: { email },
+  });
 
-      if (!userRecord || !userRecord.access) {
-        console.warn('Unauthorized login attempt:', email);
-        return false;
-      }
+  if (!userRecord || !userRecord.access) {
+    console.warn('Unauthorized login attempt:', email);
+    return false;
+  }
 
-      const headersList = headers();
-      const userAgent = headersList.get('user-agent') ?? 'Unknown Device';
+  // Await headers() before using .get()
+  const headersList = await headers();
+  const userAgent = headersList.get('user-agent') ?? 'Unknown Device';
 
-      await prisma.admin.update({
-        where: { id: userRecord.id },
-        data: {
-          lastlogin: new Date(),
-          lastlogindevicemeta: userAgent,
-        },
-      });
-
-      return true;
+  await prisma.admin.update({
+    where: { id: userRecord.id },
+    data: {
+      lastlogin: new Date(),
+      lastlogindevicemeta: userAgent,
     },
+  });
+
+  return true;
+},
+
     async jwt({ token, user }) {
       if (user) {
         token.email = user.email;

@@ -34,11 +34,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
 
     // Get privacy-compliant visitor data
-    const clientIP = req.ip || 
-                    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
-                    req.headers.get('x-real-ip') || 
-                    'unknown';
-    
+const clientIP =
+  req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+  req.headers.get('x-real-ip') ||
+  'unknown';
+
     const userAgent = req.headers.get('user-agent') || 'unknown';
     
     // Create hashed identifiers (GDPR compliant - no personal data stored)
@@ -185,18 +185,19 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       // Group by week
       const weeklyData: { [key: string]: { views: number; unique_visitors: number; endpoints: Set<string> } } = {};
       
-      statistics.forEach(stat => {
-        const weekStart = getWeekStart(new Date(stat.date));
-        const weekKey = weekStart.toISOString().split('T')[0];
-        
-        if (!weeklyData[weekKey]) {
-          weeklyData[weekKey] = { views: 0, unique_visitors: 0, endpoints: new Set() };
-        }
-        
-        weeklyData[weekKey].views += stat.views;
-        weeklyData[weekKey].unique_visitors += stat.unique_visitors;
-        weeklyData[weekKey].endpoints.add(stat.endpoint);
-      });
+statistics.forEach(stat => {
+  const weekStart = getWeekStart(new Date(stat.date));
+  const weekKey = weekStart.toISOString().split('T')[0];
+
+  if (!weeklyData[weekKey]) {
+    weeklyData[weekKey] = { views: 0, unique_visitors: 0, endpoints: new Set() };
+  }
+
+  weeklyData[weekKey].views += stat.views ?? 0;
+  weeklyData[weekKey].unique_visitors += stat.unique_visitors ?? 0;
+  weeklyData[weekKey].endpoints.add(stat.endpoint);
+});
+
       
       aggregatedData = Object.entries(weeklyData).map(([date, data]) => ({
         period: date,
@@ -208,19 +209,19 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       // Group by month
       const monthlyData: { [key: string]: { views: number; unique_visitors: number; endpoints: Set<string> } } = {};
       
-      statistics.forEach(stat => {
-        const date = new Date(stat.date);
-        const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-        
-        if (!monthlyData[monthKey]) {
-          monthlyData[monthKey] = { views: 0, unique_visitors: 0, endpoints: new Set() };
-        }
-        
-        monthlyData[monthKey].views += stat.views;
-        monthlyData[monthKey].unique_visitors += stat.unique_visitors;
-        monthlyData[monthKey].endpoints.add(stat.endpoint);
-      });
-      
+statistics.forEach(stat => {
+  const date = new Date(stat.date);
+  const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+
+  if (!monthlyData[monthKey]) {
+    monthlyData[monthKey] = { views: 0, unique_visitors: 0, endpoints: new Set() };
+  }
+
+  monthlyData[monthKey].views += stat.views ?? 0;
+  monthlyData[monthKey].unique_visitors += stat.unique_visitors ?? 0;
+  monthlyData[monthKey].endpoints.add(stat.endpoint);
+});
+
       aggregatedData = Object.entries(monthlyData).map(([date, data]) => ({
         period: date,
         views: data.views,

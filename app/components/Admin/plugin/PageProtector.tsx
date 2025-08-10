@@ -15,45 +15,43 @@ export default function ProtectedPage({ children }: ProtectedPageProps) {
   const [access, setAccess] = useState<boolean | null>(null)
   const [checkingAccess, setCheckingAccess] = useState(true)
 
-  useEffect(() => {
-    if (status === 'loading') return
+useEffect(() => {
+  if (status === 'loading') return;
+  if (pathname === '/Admin/login' || pathname === '/Admin/not-access') return;
+  if (!session || !session.user || !session.user.email) {
+    router.replace('/Admin/login');
+    return;
+  }
 
-    // Avoid redirect loop on login and not-access page
-    if (pathname === '/Admin/login' || pathname === '/Admin/not-access') return
+  const email = session.user.email;  // <-- Extract here
 
-    // If session or user or email missing, redirect to login
-    if (!session || !session.user || !session.user.email) {
-      router.replace('/Admin/login')
-      return
-    }
-
-    async function fetchAccess() {
-      setCheckingAccess(true)
-      try {
-        const res = await fetch('/api/backend/check-access', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: session.user.email }),
-        })
-        if (res.ok) {
-          const data = await res.json()
-          setAccess(data.access)
-          if (!data.access) {
-            router.replace('/Admin/not-access')
-          }
-        } else {
-          // On error redirect to login
-          router.replace('/Admin/login')
+  async function fetchAccess() {
+    setCheckingAccess(true);
+    try {
+      const res = await fetch('/api/backend/check-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAccess(data.access);
+        if (!data.access) {
+          router.replace('/Admin/not-access');
         }
-      } catch {
-        router.replace('/Admin/login')
-      } finally {
-        setCheckingAccess(false)
+      } else {
+        router.replace('/Admin/login');
       }
+    } catch {
+      router.replace('/Admin/login');
+    } finally {
+      setCheckingAccess(false);
     }
+  }
 
-    fetchAccess()
-  }, [status, session, router, pathname])
+  fetchAccess();
+}, [status, session, router, pathname]);
+
 
   if (status === 'loading' || checkingAccess) {
     return <p>Loading...</p>
