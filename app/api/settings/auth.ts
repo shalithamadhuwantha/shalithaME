@@ -1,6 +1,6 @@
 // lib/auth/verifyApiKey.ts
 import { NextRequest, NextResponse } from "next/server";
-import { log } from "node:console";
+
 
 export function verifyApiKey(req: NextRequest): NextResponse | null {
   const authHeader =
