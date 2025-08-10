@@ -8,7 +8,7 @@ import VisitorTracker from './components/settings/VisitorTracker';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Shalitha Madhuwantha | Cybersecurity Portfolio',
+  title: 'Shalitha Madhuwantha | Cybersecurity Enthusiast',
   description: 'CTF player | Reverse Engineer | Content Creator | Exploit Development',
   keywords: 'cybersecurity, hacking, CTF, reverse engineering, virus, portfolio , weber , shalitha , shalitha m gamage , gamage , malware',
   authors: [{ name: 'Shalitha Madhuwantha', url: 'https://shalitha.me' }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   manifest: '/assets/img/favicon/site.webmanifest',
   openGraph: {
-    title: 'Shalitha Madhuwantha | Cybersecurity Portfolio',
+    title: 'Shalitha Madhuwantha | Cybersecurity Enthusiast',
     description: 'CTF player | Reverse Engineer | Content Creator  | Exploit Development | System Engineer | Linux & Windows',
     url: 'https://shalitha.me',
     siteName: 'Shalitha Madhuwantha Portfolio',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shalitha Madhuwantha | Cybersecurity Portfolio',
+    title: 'Shalitha Madhuwantha | Cybersecurity Enthusiast',
     description: 'CTF player | Reverse Engineer | Content Creator | CCNA | Exploit Development | System Engineer | Linux & Windows',
     creator: '@shalithaMgamage',
     images: ['https://shalitha.me/assets/img/dp.jpg'],
