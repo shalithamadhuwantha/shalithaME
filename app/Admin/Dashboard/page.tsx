@@ -1,4 +1,3 @@
-// pages/Admin/Dashboard.tsx
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
@@ -11,23 +10,16 @@ export default function Dashboard() {
   if (status === "loading") {
     return <div>Loading session...</div>;
   }
-let user = "";
-  if (session) {
-    
-     user = session.user ?? {};
-  }else{
-      user = "";
-  }
 
-  // Session info
+  // Either the user object from the session or null
+  const user = session?.user ?? null;
 
   return (
-    <>
-      <ProtectedPage>
-       
+    <ProtectedPage>
+      <div>
+        <h1>Welcome, {user?.name ?? "Guest"}</h1>
         <VisitorStats />
-      </ProtectedPage>
-    </>
+      </div>
+    </ProtectedPage>
   );
 }
-
