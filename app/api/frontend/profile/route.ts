@@ -12,7 +12,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     console.log(req);
     console.log(authError);
     
-    if (authError) return authError;
+    // if (authError) return authError;
 
   } catch (authErr: unknown) {
     console.log('Authentication Error:', authErr);
