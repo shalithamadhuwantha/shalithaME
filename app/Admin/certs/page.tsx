@@ -93,13 +93,16 @@ export default function CertDisplay() {
     setNewImageName("");
   }
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
-    const { name, value, type, checked } = e.target;
-    setForm(f => ({
-      ...f,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  }
+function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+  const { name, value, type } = e.target;
+  const checked = e.target instanceof HTMLInputElement ? e.target.checked : false;
+
+  setForm(f => ({
+    ...f,
+    [name]: type === "checkbox" ? checked : value,
+  }));
+}
+
 
   function handleAddOrEditCert(e: React.FormEvent) {
     e.preventDefault();
