@@ -5,6 +5,7 @@ import { verifyApiKey } from '@/api/settings/auth';
 export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const authError = verifyApiKey(req);
+    
     if (authError) return authError;
   } catch (authErr: unknown) {
     const message =

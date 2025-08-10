@@ -4,7 +4,7 @@ import { log } from 'console';
 
 export async function GET(request, { params }) {
     // Extract the image filename from the URL
-    const { name } = params; // expects [...name] catch-all
+    const { name } = params || ""; // expects [...name] catch-all
     if (!name || !Array.isArray(name) || name.length === 0) {
         return new Response('Image not specified', { status: 400 });
     }
@@ -29,7 +29,6 @@ export async function GET(request, { params }) {
             webp: 'image/webp',
             svg: 'image/svg+xml'
         }[ext] || 'application/octet-stream';
-
         return new Response(imageBuffer, {
             status: 200,
             headers: {
@@ -41,7 +40,3 @@ export async function GET(request, { params }) {
         return new Response('Image not found', { status: 404 });
     }
 }
-
-// To use this, rename your file to [...name]/route.js
-// Place images in /app/api/settings/img/imgpt/
-// Access via /api/settings/img/out/test.jpg

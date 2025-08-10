@@ -2,11 +2,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/api/settings/prisma';
 import { verifyApiKey } from '@/api/settings/auth';
+import { log } from 'node:console';
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   // ✅ Call reusable auth
   try {
     const authError = verifyApiKey(req);
+    console.log(req);
+    
     if (authError) return authError;
   } catch (authErr: unknown) {
     console.log('Authentication Error:', authErr);
