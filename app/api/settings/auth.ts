@@ -1,12 +1,14 @@
 // lib/auth/verifyApiKey.ts
 import { NextRequest, NextResponse } from "next/server";
+import { log } from "node:console";
 
 export function verifyApiKey(req: NextRequest): NextResponse | null {
   const authHeader =
     req.headers.get("authorization") || req.headers.get("x-api-key");
   const token = authHeader;
 
-  console.log("Unauthorized access attempt with token:", token);
+  console.log("Authorization header:", authHeader);
+
   if (!token || token !== process.env.NEXT_PUBLIC_MY_API_KEY) {
     console.log("Unauthorized access attempt with token:", token);
     return NextResponse.json(

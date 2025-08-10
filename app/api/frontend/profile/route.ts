@@ -9,8 +9,10 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const authError = verifyApiKey(req);
     console.log(req);
+    console.log(authError);
     
     if (authError) return authError;
+    
   } catch (authErr: unknown) {
     console.log('Authentication Error:', authErr);
     
